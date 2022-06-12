@@ -7,11 +7,6 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack =12;
 
-console.log(enemyNames);
-console.log(enemyNames.length);
-console.log(enemyNames[0]);
-console.log(enemyNames[3]);
-
 //fight function
 var fight = function(enemyName) {
     //sub val of playerAttack from val of enemyHealth -> result updates val in enemyHealth
@@ -37,7 +32,7 @@ var fight = function(enemyName) {
         //Log result
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-            );
+        );
 
             //check enemy's health
         if (enemyHealth<= 0) {
@@ -78,7 +73,6 @@ var startGame = function() {
     playerMoney = 10;
     
     for (var i = 0; i < enemyNames.length; i++) {
-        // debugger; 
         //call fight function with enemy-robot
         if(playerHealth > 0) { 
             window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
@@ -105,7 +99,8 @@ var startGame = function() {
 };
 
 var endGame = function() {
-    
+    window.alert("The game has now ended. Let's see how you did!");
+
     if (playerHealth > 0) {
         window.alert("Great job, you survived the game! You have a score of " + playerMoney +".");
     }
@@ -138,7 +133,6 @@ var shop = function() {
 
                 playerHealth = playerHealth + 20;
                 playerMoney = playerMoney - 7;
-                break;
             }
             else {
                 window.alert("You don't have enough money!");
@@ -153,7 +147,6 @@ var shop = function() {
 
                 playerAttack = playerAttack + 6;
                 playerMoney = playerMoney - 7;
-                break;
             }
             else {
                 window.alert("You don't have enough money!");
