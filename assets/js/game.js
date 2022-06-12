@@ -93,7 +93,7 @@ var fight = function(enemyName) {
 
 //execute function
 for(var i = 0; i < enemyNames.length; i++) {
-    // debugger;
+    // debugger; 
     //call fight function with enemy-robot
     if(playerHealth > 0) { 
         window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
