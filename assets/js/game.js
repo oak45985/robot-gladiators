@@ -20,25 +20,40 @@
 //     }
 // ];
 
+//fight or skip
+var fightOrSkip = function () {
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+
+    if (!promptFight) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
+    promptFight = promptFight.toLowerCase();
+
+    if(promptFight === "skip") {
+        //     //confirm player wants to skip
+        var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+        //     //yes
+        if (confirmSkip) {
+            window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+            //subtract money
+            playerInfo.playerMoney = Math.max(0, playerInfo.money - 10);
+
+            return true;
+        }
+    }
+    return false;
+}
+
 //fight function
 var fight = function(enemy) {
     //sub val of playerInfo.attack from val of enemy.health -> result updates val in enemy.health
     while ( playerInfo.health > 0 && enemy.health > 0) {
         //run or fight?
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-        // if player picks skip confirm & stop loop
-        if(promptFight === "skip" || promptFight === "SKIP") {
-            //confirm player wants to skip
-            var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-            //yes
-            if (confirmSkip) {
-                window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-                //subtract money
-                playerInfo.money = Math.max(0, playerInfo.money - 10);
-                console.log("playerInfo.money", playerInfo.money);
-                break;
-            }
-        }
+        if (fightOrSkip()) {
+            break;
+        };
 
         // if (promptFight === "fight" || promptFight === "FIGHT") {
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
