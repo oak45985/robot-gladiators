@@ -20,6 +20,12 @@
 //     }
 // ];
 
+var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+
+    return value;
+}
+
 //fight or skip
 var fightOrSkip = function () {
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
@@ -38,13 +44,13 @@ var fightOrSkip = function () {
         if (confirmSkip) {
             window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
             //subtract money
-            playerInfo.playerMoney = Math.max(0, playerInfo.money - 10);
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
 
             return true;
         }
     }
     return false;
-}
+};
 
 //fight function
 var fight = function(enemy) {
@@ -114,16 +120,15 @@ var fight = function(enemy) {
 //execute function
 var startGame = function() {
     playerInfo.reset();
-    // playerInfo.health = 100;
-    // playerInfo.attack = 10;
-    // playerInfo.money = 10;
     
     for (var i = 0; i < enemyInfo.length; i++) {
+        console.log(playerInfo);
         //call fight function with enemy-robot
         if(playerInfo.health > 0) { 
             window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
             var pickedEnemyObj = enemyInfo[i];
             pickedEnemyObj.health = randomNumber(40, 60);
+            console.log(pickedEnemyObj);
             fight(pickedEnemyObj);
                     //if we're not at the last enemy in array
             if (playerInfo.health > 0 && i < enemyInfo.length - 1) {
@@ -162,13 +167,6 @@ var endGame = function() {
     else {
         alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
     }
-
-    // if (playerInfo.health > 0) {
-    //     window.alert("Great job, you survived the game! You have a score of " + playerInfo.money +".");
-    // }
-    // else {
-    //     window.alert("You've lost your robot in battle :(.");
-    // }
 
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
@@ -209,12 +207,6 @@ var shop = function() {
     }
 };
 
-var randomNumber = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min + 1) + min);
-
-    return value;
-}
-
 var getPlayerName = function() {
     var name = "";
 
@@ -224,7 +216,7 @@ var getPlayerName = function() {
 
     console.log("Your robot's name is " + name);
     return name;
-}
+};
 
 var playerInfo = {
     name: getPlayerName(),
@@ -238,8 +230,9 @@ var playerInfo = {
     },
     refillHealth: function() {
         if (this.money >= 7) {
-        this.health += 20;
-        this.money -= 7;
+            window.alert("refilling player's health by 20 for 7 dollars.");
+            this.health += 20;
+            this.money -= 7;
         }
         else {
             window.alert("You don't have enough money!");
@@ -247,8 +240,9 @@ var playerInfo = {
     },
     upgradeAttack: function() {
         if (this.money >= 7) {
-        this.attack += 6;
-        this.money -= 7;
+            window.alert("Upgrading player's attack by 6 for 7 dollars.");
+            this.attack += 6;
+            this.money -= 7;
         }
         else {
             window.alert("You don't have enough money!");
